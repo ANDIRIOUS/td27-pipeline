@@ -1,0 +1,7 @@
+# Entorno de trabajo: Jupyter + OpenCV + matplotlib + kloppy. Los datos se montan, nunca se copian.
+FROM python:3.10.20-slim
+COPY solution/requirements.txt solution/requirements-dev.txt /tmp/
+RUN pip install --no-cache-dir -r /tmp/requirements-dev.txt
+WORKDIR /r
+EXPOSE 8888
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.root_dir=/r"]

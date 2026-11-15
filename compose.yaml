@@ -1,0 +1,18 @@
+# Todo el trabajo de Tiki-Data corre aquí. Los datos se montan desde ./data (o desde TIKI_DATA).
+#
+#   docker compose run --rm pipeline          # genera, valida y puntúa la entrega (Tiki-Data.csv)
+#   docker compose up dev                     # Jupyter en http://127.0.0.1:8888 (el link con token sale en el log)
+#   docker compose run --rm dev python ...    # cualquier script con OpenCV, matplotlib y kloppy
+services:
+  pipeline:
+    build: {context: ., dockerfile: solution/Dockerfile}
+    image: tiki-data/pipeline:1
+    volumes: [".:/r", "${TIKI_DATA:-./data}:/r/data"]
+    environment:
+      TEAM: ${TEAM:-Tiki-Data}
+      VERSION: ${VERSION:-v7}
+  dev:
+    build: {context: ., dockerfile: solution/Dockerfile.dev}
+    image: tiki-data/dev:1
+    volumes: [".:/r", "${TIKI_DATA:-./data}:/r/data"]
+    ports: ["127.0.0.1:8888:8888"]   # solo en tu máquina, no en la red

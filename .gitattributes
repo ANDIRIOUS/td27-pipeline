@@ -1,0 +1,4 @@
+# Scripts con fin de línea LF aunque se clone en Windows; con CRLF, sh dentro del contenedor falla.
+*.sh text eol=lf
+Dockerfile* text eol=lf
+*.yaml text eol=lf

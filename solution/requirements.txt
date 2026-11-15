@@ -1,0 +1,3 @@
+# Versiones exactas con las que se generó la entrega (mismo archivo byte a byte).
+numpy==2.2.6
+pandas==2.3.3
